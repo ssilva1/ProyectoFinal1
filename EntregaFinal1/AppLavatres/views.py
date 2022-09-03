@@ -2,24 +2,24 @@ from http.client import HTTPResponse
 from django.shortcuts import render
 
 # Create your views here.
-def inicio(request)
+def inicio(request):
 
     return HttpResponse('Vista inicio')
 
 
-def vehiculo(request)
+def vehiculos(request):
 
     return HttpResponse('Vista Vehiculo')
 
-def indumentaria(request)
+def indumentarias(request):
 
     return HttpResponse('Vista Indumentaria')
 
-def animal(request)
+def animales(request):
 
     return HttpResponse('Vista Animal')
 
-    
+
 
 
 
