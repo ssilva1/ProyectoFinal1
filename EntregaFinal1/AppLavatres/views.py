@@ -35,6 +35,13 @@ def vehiculo_formulario(request):
             vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo'), aspirado=boolean.get(False), dominio=data.get('dominio'), ingreso=datetime.get('ingreso'), egreso=datetime.get('egreso'))
             vehiculo1.save()
             return redirect('AppLavatresAutoFormulario')
+    
+    vehiculos = Vehiculo.objects.all()
+    contexto = {
+        'form': FormularioVehiculo(),
+        'vehiculos': vehiculos
+    }
+    return render(request, 'AppLavatres/vehiculos.html', contexto)
             
             
     
