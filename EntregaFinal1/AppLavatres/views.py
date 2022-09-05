@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import datetime, time
 from urllib import request
 from xmlrpc.client import boolean
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
-from AppLavatres.forms import FormularioVehiculo
+from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales
 
 # Create your views here.
 def inicio(request):
@@ -44,9 +44,38 @@ def vehiculo_formulario(request):
     return render(request, 'AppLavatres/vehiculos.html', contexto)
             
             
+def indumentaria_formulario(request):
+    if request.method == "POST":
+        mi_formulario = FormularioIndumentaria(request.POST)
+        if mi_formulario.is_valid():
+            data = mi_formulario.cleaned_data
+            indumentaria1 = Indumentaria(tipo_indumentaria=data.get('tipo_indumentaria'), ropa_blanca=boolean(), nombre_cliente=data.get('cliente'), egreso=datetime.time())
+            indumentaria1.save()
+            return redirect('AppLavatresIndumentariaFormulario')
     
+    indumentaria1 = Indumentaria.objects.all()
+    contexto = {
+        'form': FormularioIndumentaria(),
+        'indumentaria': Indumentaria
+    }
+    return render(request, 'AppLavatres/indumentarias.html', contexto)
+               
 
-
+def animales_formulario(request):
+    if request.method == "POST":
+        mi_formulario = FormularioAnimales(request.POST)
+        if mi_formulario.is_valid():
+            data = mi_formulario.cleaned_data
+            animal1 = Animal(tipo_animal=data.get('tipo_animal'), nombre_duenio=data.get('cliente'), core_pelo=boolean(), fecha_turno=datetime.time())
+            animal1.save()
+            return redirect('AppLavatresAnimalesFormulario')
+    
+    animal1 = Animal.objects.all()
+    contexto = {
+        'form': FormularioAnimales(),
+        'animal': Animal
+    }
+    return render(request, 'AppLavatres/animales.html', contexto)
 
 
 
