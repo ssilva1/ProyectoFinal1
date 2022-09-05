@@ -32,7 +32,7 @@ def vehiculo_formulario(request):
         mi_formulario = FormularioVehiculo(request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
-            vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo'), aspirado=boolean.get(False), dominio=data.get('dominio'), ingreso=datetime.get('ingreso'), egreso=datetime.get('egreso'))
+            vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo_vehiculo'), aspirado=data.get('aspirado'), dominio=data.get('dominio'), ingreso=data.get('ingreso'), egreso=data.get('egreso'))
             vehiculo1.save()
             return redirect('AppLavatresAutoFormulario')
     
