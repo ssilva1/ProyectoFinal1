@@ -18,3 +18,5 @@ class Animal(models.Model):
     nombre_duenio = models.CharField(max_length=30)
     corte_pelo = models.BooleanField()
     fecha_turno = models.DateField()
+
+

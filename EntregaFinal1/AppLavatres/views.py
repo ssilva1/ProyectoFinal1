@@ -1,6 +1,4 @@
-from datetime import datetime, time
-from urllib import request
-from xmlrpc.client import boolean
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
 from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales
@@ -35,6 +33,9 @@ def vehiculo_formulario(request):
             vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo_vehiculo'), aspirado=data.get('aspirado'), dominio=data.get('dominio'), ingreso=data.get('ingreso'), egreso=data.get('egreso'))
             vehiculo1.save()
             return redirect('AppLavatresAutoFormulario')
+        else:
+            messages.info(request, 'formulario no cargado')
+         
     
     vehiculos = Vehiculo.objects.all()
     contexto = {
