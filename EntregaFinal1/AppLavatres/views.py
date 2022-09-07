@@ -1,6 +1,4 @@
-from datetime import datetime, time
-from urllib import request
-from xmlrpc.client import boolean
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
 from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales
@@ -29,12 +27,15 @@ def animales(request):
 
 def vehiculo_formulario(request):
     if request.method == "POST":
-        mi_formulario = FormularioVehiculo(request.POST)
+        mi_formulario = FormularioVehiculo(data=request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
             vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo_vehiculo'), aspirado=data.get('aspirado'), dominio=data.get('dominio'), ingreso=data.get('ingreso'), egreso=data.get('egreso'))
             vehiculo1.save()
             return redirect('AppLavatresAutoFormulario')
+        else:
+            messages.info(request, 'formulario no cargado')
+         
     
     vehiculos = Vehiculo.objects.all()
     contexto = {
@@ -44,7 +45,7 @@ def vehiculo_formulario(request):
     return render(request, 'AppLavatres/vehiculos.html', contexto)
             
             
-def indumentaria_formulario(request):
+"""def indumentaria_formulario(request):
     if request.method == "POST":
         mi_formulario = FormularioIndumentaria(request.POST)
         if mi_formulario.is_valid():
@@ -58,10 +59,10 @@ def indumentaria_formulario(request):
         'form': FormularioIndumentaria(),
         'indumentaria': Indumentaria
     }
-    return render(request, 'AppLavatres/indumentarias.html', contexto)
+    return render(request, 'AppLavatres/indumentarias.html', contexto)"""
                
 
-def animales_formulario(request):
+"""def animales_formulario(request):
     if request.method == "POST":
         mi_formulario = FormularioAnimales(request.POST)
         if mi_formulario.is_valid():
@@ -75,7 +76,7 @@ def animales_formulario(request):
         'form': FormularioAnimales(),
         'animal': Animal
     }
-    return render(request, 'AppLavatres/animales.html', contexto)
+    return render(request, 'AppLavatres/animales.html', contexto)"""
 
 
 
