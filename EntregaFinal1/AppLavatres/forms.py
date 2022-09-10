@@ -1,7 +1,4 @@
-#from socket import fromshare
-import imp
 from django import forms
-from AppLavatres.widgets import DateTimePickerInput
 
 
 class FormularioVehiculo(forms.Form):
