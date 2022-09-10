@@ -27,7 +27,7 @@ def animales(request):
 
 def vehiculo_formulario(request):
     if request.method == "POST":
-        mi_formulario = FormularioVehiculo(data=request.POST)
+        mi_formulario = FormularioVehiculo(request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
             vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo_vehiculo'), aspirado=data.get('aspirado'), dominio=data.get('dominio'), ingreso=data.get('ingreso'), egreso=data.get('egreso'))
