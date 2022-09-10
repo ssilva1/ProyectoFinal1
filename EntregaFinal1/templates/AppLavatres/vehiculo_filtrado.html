@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Vehiculo formulario
+{% endblock %}
+
+{% block inicio %}
+    <form action='' method='GET'>
+        {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Buscar">
+
+	</form>
+	    {% comment %} {% for vehiculo1 in Vehiculos %}
+	        El nombre del curso es {{ vehiculo1.dominio }} con la camada {{ vehiculo1.egreso }}
+	        <br>
+	    {% endfor %} {% endcomment %}
+
+
+
+{% endblock %}

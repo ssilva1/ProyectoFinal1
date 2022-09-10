@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
-from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales
+from AppLavatres.forms import *
 
 def inicio(request):
     contexto = {
@@ -39,10 +39,10 @@ def indumentaria_formulario(request):
             indumentaria1.save()
             return redirect('AppLavatresIndumentariaFormulario')
     
-    indumentaria1 = Indumentaria.objects.all()
+    indumentarias = Indumentaria.objects.all()
     contexto = {
         'form': FormularioIndumentaria(),
-        'indumentaria': Indumentaria
+        'indumentaria': indumentarias
     }
     return render(request, 'AppLavatres/indumentarias.html', contexto)
                
@@ -52,9 +52,9 @@ def animales_formulario(request):
         mi_formulario = FormularioAnimales(request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
-            animal1 = Animal(tipo_animal=data.get('tipo_animal'), nombre_duenio=data.get('nombre_duenio'), core_pelo=data.get('core_pelo'), fecha_turno=data.get('fecha_turno'))
+            animal1 = Animal(tipo_animal=data.get('tipo_animal'), nombre_duenio=data.get('nombre_duenio'), corte_pelo=data.get('corte_pelo'), fecha_turno=data.get('fecha_turno'))
             animal1.save()
-            return redirect('AppLavatresAnimalesFormulario')
+            return redirect('AppLavatresMascotaFormulario')
     
     animal1 = Animal.objects.all()
     contexto = {
@@ -64,5 +64,12 @@ def animales_formulario(request):
     return render(request, 'AppLavatres/animales.html', contexto)
 
 
-
+def busqueda_vehiculo(request):
+    dominio1 = request.GET.get('dominio')
+    vehiculo1 = Vehiculo.objects.get(dominio=dominio1)
+    contexto = {
+        'vehiculo' : vehiculo1
+    }
+    return render(request,'AppLavatres/vehiculo_filtrado.html', contexto)
+    
 

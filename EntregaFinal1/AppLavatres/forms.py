@@ -10,7 +10,7 @@ class FormularioVehiculo(forms.Form):
     
 class FormularioIndumentaria(forms.Form):
     tipo_indumentaria = forms.CharField(max_length=40)
-    ropa_banca = forms.BooleanField(required=False)
+    ropa_blanca = forms.BooleanField(required=False)
     nombre_cliente = forms.CharField(max_length=30)
     fecha_retiro = forms.DateTimeField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
     
@@ -20,3 +20,7 @@ class FormularioAnimales(forms.Form):
     nombre_duenio = forms.CharField(max_length=30) 
     corte_pelo = forms.BooleanField(required=False)
     fecha_turno = forms.DateTimeField(widget=forms.widgets.DateTimeInput(attrs={'type':'date'}))
+    
+    
+class BusquedaVehiculo(forms.Form):
+    dominio = forms.CharField(max_length=7)

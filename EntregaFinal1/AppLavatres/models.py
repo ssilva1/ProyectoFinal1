@@ -9,14 +9,13 @@ class Vehiculo(models.Model):
     
 class Indumentaria(models.Model):
     tipo_indumentaria = models.CharField(max_length=40)
-    ropa_banca = models.BooleanField()
+    ropa_blanca = models.BooleanField()
     nombre_cliente = models.CharField(max_length=30)
-    fecha_retiro = models.DateField()
+    fecha_retiro = models.DateTimeField()
     
 class Animal(models.Model):
     tipo_animal = models.CharField(max_length=30)
     nombre_duenio = models.CharField(max_length=30)
     corte_pelo = models.BooleanField()
-    fecha_turno = models.DateField()
-
+    fecha_turno = models.DateTimeField()
 
