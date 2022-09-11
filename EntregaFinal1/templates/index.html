@@ -21,11 +21,16 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href={%static "css/styles.css"%} rel="stylesheet" />
     </head>
-    <body id="page-top">
+
+		<body id="page-top">
+    
         <!-- Navigation-->
         {%include 'base/navigation.html'%}
 
-        
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+     
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
