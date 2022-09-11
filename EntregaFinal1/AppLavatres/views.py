@@ -1,8 +1,9 @@
 from email import message
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
-from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales
+from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales, BusquedaDominio, BusquedaCliente, BusquedaDuenio
 
 def inicio(request):
     contexto = {
@@ -42,7 +43,9 @@ def indumentaria_formulario(request):
             indumentaria1.save()
             messages.info(request, 'Prenda cargada satisfactoriamente')
             return redirect('AppLavatresIndumentariaFormulario')
-    
+        else:
+            messages.info(request, 'formulario no cargado')    
+
     indumentaria1 = Indumentaria.objects.all()
     contexto = {
         'form': FormularioIndumentaria(),
@@ -60,7 +63,9 @@ def animales_formulario(request):
             animal1.save()
             messages.info(request, 'Mascota cargada satisfactoriamente')
             return redirect('AppLavatresMascotaFormulario')
-    
+        else:
+            messages.info(request, 'formulario no cargado')
+
     animal1 = Animal.objects.all()
     contexto = {
         'form': FormularioAnimales(),
@@ -68,6 +73,41 @@ def animales_formulario(request):
     }
     return render(request, 'AppLavatres/animales.html', contexto)
 
+def busqueda_vehiculo_post(request):
+    dominio = request.GET.get('dominio')
+    vehiculos = Vehiculo.objects.filter(dominio__icontains=dominio)
 
+    contexto = {
+        'vehiculos': vehiculos
+    }
+    return render(request, 'AppLavatres/vehiculo_filtrado.html', contexto)
+
+def busqueda_vehiculo(request):
+
+    contexto = {
+        'form': BusquedaDominio(),
+        #'titulo_form': 'Buscar Vehiculo',
+        #'boton_envio': 'Buscar'
+    }
+
+    return render(request, 'AppLavatres/busqueda_vehiculo.html', contexto)
+
+def busqueda_indumentaria_post(request):
+    nombre_cliente = request.GET.get('nombre_cliente')
+    indumentarias = Indumentaria.objects.filter(nombre_cliente__icontains=nombre_cliente)
+
+    contexto = {
+        'indumentarias': indumentarias
+    }
+    return render(request, 'AppLavatres/indumentaria_filtrado.html', contexto)
+
+def busqueda_animal_post(request):
+    nombre_duenio = request.GET.get('nombre_duenio')
+    animales = Animal.objects.filter(nombre_duenio__icontains=nombre_duenio)
+
+    contexto = {
+        'animales': animales
+    }
+    return render(request, 'AppLavatres/animal_filtrado.html', contexto)
 
 

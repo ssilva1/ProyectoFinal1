@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Busqueda de Vehiculo
+{% endblock %}
+
+{% block inicio %}
+    <form action="/AppLavatres/busqueda_vehiculo_post" method="GET">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Buscar'>
+    </form>
+
+{% endblock %}
