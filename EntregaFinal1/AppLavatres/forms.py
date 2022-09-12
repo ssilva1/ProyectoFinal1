@@ -20,7 +20,12 @@ class FormularioAnimales(forms.Form):
     nombre_duenio = forms.CharField(max_length=30) 
     corte_pelo = forms.BooleanField(required=False)
     fecha_turno = forms.DateTimeField(widget=forms.widgets.DateTimeInput(attrs={'type':'date'}))
-    
-    
-class BusquedaVehiculo(forms.Form):
-    dominio = forms.CharField()
+
+class BusquedaDominio(forms.Form):
+    dominio = forms.CharField(max_length=7)
+
+class BusquedaCliente(forms.Form):
+    nombre_cliente = forms.CharField(max_length=30)
+
+class BusquedaDuenio(forms.Form):
+    nombre_duenio = forms.CharField(max_length=30)

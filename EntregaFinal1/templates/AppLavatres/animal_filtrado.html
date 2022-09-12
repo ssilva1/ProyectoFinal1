@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Pagina de animales
+{% endblock %}
+
+{% block inicio %}
+
+    {% for animal in animales %}
+        Dueño {{ animal.nombre_duenio }} fecha de turno {{ animal.fecha_turno }}
+        <br>
+    {% endfor %}
+
+
+{% endblock %}
