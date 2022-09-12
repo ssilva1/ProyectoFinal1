@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from AppLavatres.models import Vehiculo, Indumentaria, Animal
-from AppLavatres.forms import *
-
-=======
 from email import message
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
 from AppLavatres.forms import FormularioVehiculo, FormularioIndumentaria, FormularioAnimales, BusquedaDominio, BusquedaCliente, BusquedaDuenio
->>>>>>> main
 
 def inicio(request):
     contexto = {
@@ -51,15 +43,10 @@ def indumentaria_formulario(request):
             indumentaria1.save()
             messages.info(request, 'Prenda cargada satisfactoriamente')
             return redirect('AppLavatresIndumentariaFormulario')
-<<<<<<< HEAD
-    
-    indumentarias = Indumentaria.objects.all()
-=======
         else:
             messages.info(request, 'formulario no cargado')    
 
     indumentaria1 = Indumentaria.objects.all()
->>>>>>> main
     contexto = {
         'form': FormularioIndumentaria(),
         'indumentaria': indumentarias
@@ -90,27 +77,12 @@ def busqueda_vehiculo_post(request):
     vehiculos = Vehiculo.objects.filter(dominio__icontains=dominio)
     print(vehiculos)
 
-<<<<<<< HEAD
-def busqueda_vehiculo(request):
-    dominio = request.GET.get('dominio',"None")
-    autos = Vehiculo.objects.filter(dominio__icontains=dominio)
-    
-    contexto ={
-        'form' : BusquedaVehiculo(),
-       'autos' : autos  
-    }
-    return render(request,'AppLavatres/vehiculo_filtrado.html', contexto )
-    
-    
-    
-=======
     contexto = {
         'vehiculos': vehiculos
     }
     return render(request, 'AppLavatres/vehiculo_filtrado.html', contexto)
 
 def busqueda_vehiculo(request):
->>>>>>> main
 
     contexto = {
         'form': BusquedaDominio()
