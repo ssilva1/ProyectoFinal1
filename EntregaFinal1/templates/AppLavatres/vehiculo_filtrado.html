@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Pagina de vehículos
+{% endblock %}
+
+{% block inicio %}
+
+    {% for vehiculo in vehiculos %}
+        El dominio del vehículo es {{ vehiculo.dominio }} con fecha de ingreso {{ vehiculo.ingreso }} y fecha de retiro {{ vehiculo.egreso }}
+        <br>
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Busqueda de Mascota
+{% endblock %}
+
+{% block inicio %}
+    <form action='/busqueda_animal_post' method='GET'>
+        {% csrf_token %}
+            {{ form.as_p }}
+            <input type='submit' value='Buscar'>
+    </form>
+
+{% endblock %}
