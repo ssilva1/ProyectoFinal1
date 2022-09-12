@@ -21,14 +21,21 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href={%static "css/styles.css"%} rel="stylesheet" />
     </head>
-    <body id="page-top">
+
+		<body id="page-top">
+    
         <!-- Navigation-->
         {%include 'base/navigation.html'%}
 
-        
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+     
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
+                </p>
+                </p>
                 <div class="masthead-subheading">Bienvenido a Nuestro Servicio de Limpieza Multiple</div>
                 <div class="masthead-heading text-uppercase">MIENTRAS MÁS LIMPIO, MEJOR !!!</div>
                <!-- <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a> -->
