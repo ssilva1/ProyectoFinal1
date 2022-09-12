@@ -76,6 +76,7 @@ def animales_formulario(request):
 def busqueda_vehiculo_post(request):
     dominio = request.GET.get('dominio')
     vehiculos = Vehiculo.objects.filter(dominio__icontains=dominio)
+    print(vehiculos)
 
     contexto = {
         'vehiculos': vehiculos
@@ -85,9 +86,7 @@ def busqueda_vehiculo_post(request):
 def busqueda_vehiculo(request):
 
     contexto = {
-        'form': BusquedaDominio(),
-        #'titulo_form': 'Buscar Vehiculo',
-        #'boton_envio': 'Buscar'
+        'form': BusquedaDominio()
     }
 
     return render(request, 'AppLavatres/busqueda_vehiculo.html', contexto)
@@ -101,6 +100,14 @@ def busqueda_indumentaria_post(request):
     }
     return render(request, 'AppLavatres/indumentaria_filtrado.html', contexto)
 
+def busqueda_indumentaria(request):
+
+    contexto = {
+        'form': BusquedaCliente()
+    }
+
+    return render(request, 'AppLavatres/busqueda_indumentaria.html', contexto)
+
 def busqueda_animal_post(request):
     nombre_duenio = request.GET.get('nombre_duenio')
     animales = Animal.objects.filter(nombre_duenio__icontains=nombre_duenio)
@@ -110,4 +117,10 @@ def busqueda_animal_post(request):
     }
     return render(request, 'AppLavatres/animal_filtrado.html', contexto)
 
+def busqueda_animal(request):
 
+    contexto = {
+        'form': BusquedaDuenio()
+    }
+
+    return render(request, 'AppLavatres/busqueda_animal.html', contexto)

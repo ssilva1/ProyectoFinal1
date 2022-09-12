@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Pagina de indumentaria
+{% endblock %}
+
+{% block inicio %}
+
+    {% for indumentaria in indumentarias %}
+        Ropa correspondiente a {{ indumentaria.nombre_cliente }} con fecha de retiro {{ indumentaria.fecha_retiro }}
+        <br>
+    {% endfor %}
+
+
+{% endblock %}
