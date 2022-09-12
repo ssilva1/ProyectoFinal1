@@ -23,4 +23,4 @@ class FormularioAnimales(forms.Form):
     
     
 class BusquedaVehiculo(forms.Form):
-    dominio = forms.CharField(max_length=7)
+    dominio = forms.CharField()

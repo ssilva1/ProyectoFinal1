@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block title %}
-Vehiculo formulario
+Busqueda Vehiculo
 {% endblock %}
 
 {% block inicio %}
@@ -11,11 +11,10 @@ Vehiculo formulario
             <input type="submit" value="Buscar">
 
 	</form>
-	    {% comment %} {% for vehiculo1 in Vehiculos %}
-	        El nombre del curso es {{ vehiculo1.dominio }} con la camada {{ vehiculo1.egreso }}
-	        <br>
-	    {% endfor %} {% endcomment %}
-
+{% for auto in autos %}
+	El dominio del vehículo es {{ auto.dominio }} con fecha de ingreso {{ auto.ingreso }} y fecha de retiro {{ auto.egreso }}
+	<br>
+{% endfor %}
 
 
 {% endblock %}

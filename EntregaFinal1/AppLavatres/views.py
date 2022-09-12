@@ -1,8 +1,8 @@
-from email import message
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from AppLavatres.models import Vehiculo, Indumentaria, Animal
 from AppLavatres.forms import *
+
 
 def inicio(request):
     contexto = {
@@ -69,11 +69,15 @@ def animales_formulario(request):
 
 
 def busqueda_vehiculo(request):
-    dominio1 = request.GET.get('dominio')
-    vehiculo1 = Vehiculo.objects.get(dominio=dominio1)
-    contexto = {
-        'vehiculo' : vehiculo1
+    dominio = request.GET.get('dominio',"None")
+    autos = Vehiculo.objects.filter(dominio__icontains=dominio)
+    
+    contexto ={
+        'form' : BusquedaVehiculo(),
+       'autos' : autos  
     }
-    return render(request,'AppLavatres/vehiculo_filtrado.html', contexto)
+    return render(request,'AppLavatres/vehiculo_filtrado.html', contexto )
+    
+    
     
 
