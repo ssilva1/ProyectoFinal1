@@ -1,25 +1,6 @@
 {% extends 'index.html' %}
 
 {% block title %}
-<<<<<<< HEAD
-Busqueda Vehiculo
-{% endblock %}
-
-{% block inicio %}
-    <form action='' method='GET'>
-        {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Buscar">
-
-	</form>
-{% for auto in autos %}
-	El dominio del vehículo es {{ auto.dominio }} con fecha de ingreso {{ auto.ingreso }} y fecha de retiro {{ auto.egreso }}
-	<br>
-{% endfor %}
-
-
-{% endblock %}
-=======
 Pagina de vehículos
 {% endblock %}
 
@@ -32,4 +13,3 @@ Pagina de vehículos
 
 
 {% endblock %}
->>>>>>> main

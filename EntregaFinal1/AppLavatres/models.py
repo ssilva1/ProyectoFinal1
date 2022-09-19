@@ -11,11 +11,12 @@ class Indumentaria(models.Model):
     tipo_indumentaria = models.CharField(max_length=40)
     ropa_blanca = models.BooleanField()
     nombre_cliente = models.CharField(max_length=30)
-    fecha_retiro = models.DateTimeField()
+    fecha_retiro = models.DateField()
     
 class Animal(models.Model):
     tipo_animal = models.CharField(max_length=30)
     nombre_duenio = models.CharField(max_length=30)
     corte_pelo = models.BooleanField()
-    fecha_turno = models.DateTimeField()
+    fecha_turno = models.DateField()
+
 

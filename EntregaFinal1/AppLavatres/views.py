@@ -14,7 +14,7 @@ def inicio(request):
 
 def vehiculo_formulario(request):
     if request.method == "POST":
-        mi_formulario = FormularioVehiculo(request.POST)
+        mi_formulario = FormularioVehiculo(data=request.POST)
         if mi_formulario.is_valid():
             data = mi_formulario.cleaned_data
             vehiculo1 = Vehiculo(tipo_vehiculo=data.get('tipo_vehiculo'), aspirado=data.get('aspirado'), dominio=data.get('dominio'), ingreso=data.get('ingreso'), egreso=data.get('egreso'))
@@ -49,7 +49,7 @@ def indumentaria_formulario(request):
     indumentaria1 = Indumentaria.objects.all()
     contexto = {
         'form': FormularioIndumentaria(),
-        'indumentaria': indumentarias
+        'indumentaria': Indumentaria
     }
     return render(request, 'AppLavatres/indumentarias.html', contexto)
                
@@ -61,6 +61,7 @@ def animales_formulario(request):
             data = mi_formulario.cleaned_data
             animal1 = Animal(tipo_animal=data.get('tipo_animal'), nombre_duenio=data.get('nombre_duenio'), corte_pelo=data.get('corte_pelo'), fecha_turno=data.get('fecha_turno'))
             animal1.save()
+            messages.info(request, 'Mascota cargada satisfactoriamente')
             return redirect('AppLavatresMascotaFormulario')
         else:
             messages.info(request, 'formulario no cargado')

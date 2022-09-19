@@ -12,3 +12,4 @@ Ejecución de la página de forma local:
 4- En el lado superior derecho, se podrá seleccionar alguno de los formularios para cargar los datos del turno a reservar. 
 5- Si el turno se cargó correctamente, será notificado en la parte superior izquierda, en caso de haber inconsistencia de datos, mostrará un error.
 6- Botón "Start Bootstrap" te regresa a la página de inicio.
+7- En las búsquedas se mostrará información relevante después de completar el campo requerido y hacer click del botón "Buscar"
