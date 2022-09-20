@@ -1,14 +1,14 @@
 {% extends 'index.html' %}
 
 {% block title %}
-Login
+{{ nombre_form }}
 {% endblock %}
 
 {% block inicio %}
     <form action='' method='POST'>
         {% csrf_token %}
             {{ form.as_p }}
-            <input type='submit' value='Login'>
+            <input type='submit' value='{{ nombre_form }}'>
     </form>
 
 {% endblock %}

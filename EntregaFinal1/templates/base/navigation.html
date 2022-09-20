@@ -16,10 +16,19 @@
                 <a class="nav-link" href="{% url 'AppLavatresBusquedaIndumentaria' %}">Buscar Indumentaria</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'AppLavatresMascotaFormulario' %}">Cargar Mascota</a> 
                 </p> 
-                <a class="nav-link" href="{% url 'AppLavatresBusquedaAnimal' %}">Buscar Mascota</a></li>
-
+                <a class="nav-link" href="{% url 'AppLavatresBusquedaAnimal' %}">Buscar Mascota</a></li>                
+                                
+                
                 <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                {% comment %}	menu autenticacion {% endcomment %}
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'AppUserLogOut'%}">Loguot</a></li>
+                <h5> User: {{ user.get_username }} </h5>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'AppUserLogin'%}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'AppUserRegister'%}">Registro</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
