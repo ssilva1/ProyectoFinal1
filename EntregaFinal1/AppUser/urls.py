@@ -5,4 +5,5 @@ from AppUser.views import *
 
 urlpatterns = [
     path('login/', login_request, name='AppUserLogin'),
+    path('registro/', register, name='AppUserRegister'),
     ]
