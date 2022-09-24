@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from AppUser.forms import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -59,6 +60,23 @@ def register(request):
         #'form': UserCreationForm(),
         'form': UserRegisterForm(),
         'nombre_form': 'Registrarse'
+    }
+
+    return render(request, 'AppUser/login.html', contexto)
+
+
+@login_required
+def editar_usuario(request):
+    usuario = request.user
+    contexto = {
+        #'form': UserCreationForm(),
+        'form': UserRegisterForm(
+            initial ={
+            'username': usuario.username,
+            'email': usuario.email,
+            'last_name': usuario.last_name
+            }),
+        'nombre_form': 'editar'
     }
 
     return render(request, 'AppUser/login.html', contexto)
