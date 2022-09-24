@@ -23,6 +23,7 @@
                 <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
                 {% comment %}	menu autenticacion {% endcomment %}
                 {% if user.is_authenticated %}
+                <img height="40px" src="{{ user.avatar.imagen.url }}" alt="">
                 <li class="nav-item"><a class="nav-link" href="{% url 'AppUserLogOut'%}">Loguot</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'AppUserEditar'%}">Editar Usuario</a></li>
                 <h5> User: {{ user.get_username }} </h5>
