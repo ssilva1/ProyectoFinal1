@@ -80,3 +80,33 @@ def editar_usuario(request):
     }
 
     return render(request, 'AppUser/login.html', contexto)
+
+
+
+
+def upload_avatar(request):
+    if request.method == "POST":
+
+        formulario = AvatarForm(request.POST, request.FILES)
+
+        if formulario.is_valid():
+
+            data = formulario.cleaned_data
+            avatar = Avatar.objects.filter(user=data.get("usuario"))
+
+            if len(avatar) > 0:
+                avatar = avatar[0]
+                avatar.imagen = formulario.cleaned_data["imagen"]
+                avatar.save()
+
+            else:
+                avatar = Avatar(user=data.get("user"), imagen=data.get("imagen"))
+                avatar.save()
+
+        return redirect("AppLavatresInicio")
+
+    contexto = {
+        "form": AvatarForm(),
+        'nombre_form': 'Crear'
+    }
+    return render(request, 'AppUser/login.html', contexto)
