@@ -1,26 +1,57 @@
 {%load static%}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="http://127.0.0.1:8000/"><img src={% static "assets/img/navbar-logo.svg"%} alt="..." /></a>
+        <a class="navbar-brand" href="{% url 'AppLavatresInicio' %}"><img src={% static "assets/img/navbar-logo.svg"%} alt="..." /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu 
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'AppLavatresAutoFormulario' %}">Cargar Vehículo</a> 
-                </p> 
-                <a class="nav-link" href="{% url 'AppLavatresBusquedaVehiculo' %}">Buscar Vehículo</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'AppLavatresIndumentariaFormulario' %}">Cargar Indumentaria</a> 
-                </p> 
-                <a class="nav-link" href="{% url 'AppLavatresBusquedaIndumentaria' %}">Buscar Indumentaria</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'AppLavatresMascotaFormulario' %}">Cargar Mascota</a> 
-                </p> 
-                <a class="nav-link" href="{% url 'AppLavatresBusquedaAnimal' %}">Buscar Mascota</a></li>                
-                                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Vehículos
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresBusquedaVehiculo' %}">Buscar</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresAutoFormulario' %}">Cargar turno</a></li>
+                    </ul>
+                </li>
                 
-                <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Indumentaria
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresBusquedaIndumentaria' %}">Buscar</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresIndumentariaFormulario' %}">Cargar turno</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Mascotas
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresBusquedaAnimal' %}">Buscar</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'AppLavatresMascotaFormulario' %}">Cargar turno</a></li>
+                    </ul>
+                </li>            
+                                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Nosotros
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#team">Team</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#contact">Contacto</a></li>
+                    </ul>
+                </li>
+
                 {% comment %}	menu autenticacion {% endcomment %}
                 {% if user.is_authenticated %}
                 <img height="40px" src="{{ user.avatar.imagen.url }}" alt="">

@@ -1,4 +1,5 @@
 from email import message
+from django.core.mail import BadHeaderError, send_mail
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
