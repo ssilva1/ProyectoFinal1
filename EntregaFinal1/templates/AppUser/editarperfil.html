@@ -6,8 +6,9 @@
 
 {% block inicio %}
     <form action='' method='POST'>
+        {% csrf_token %}
     <table>
-        {{ miFormulario.as_table}}
+        {{ form.as_table }}
     </table>
     <input type='submit' value='{{ nombre_form }}'>
     </form>

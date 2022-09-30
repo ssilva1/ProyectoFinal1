@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from AppUser.forms import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -40,7 +42,6 @@ def login_request(request):
 
 
 
-
 def register(request):
     if request.method == 'POST':
 
@@ -68,18 +69,46 @@ def register(request):
 @login_required
 def editar_usuario(request):
     usuario = request.user
-    contexto = {
-        #'form': UserCreationForm(),
-        'form': UserRegisterForm(
-            initial ={
-            'username': usuario.username,
-            'email': usuario.email,
-            'last_name': usuario.last_name
-            }),
-        'nombre_form': 'editar'
-    }
+    if request.method == 'POST':
+        form = UserEditForm(request.POST)
+        if form.is_valid():
 
-    return render(request, 'AppUser/login.html', contexto)
+            data = form.cleaned_data
+        
+
+            usuario.email = data.get('email')
+            usuario.password = data.get('password')
+            # usuario.password2 = data.get('password2')
+            usuario.last_name = data.get('last_name')
+            usuario.save()
+
+            messages.info(request, 'Tu usuario fue registrado satisfactoriamente!')
+        else:
+             messages.info(request, 'Tu usuario no pudo ser registrado!')
+        return redirect('AppLavatresInicio')
+    contexto = {
+            'form': UserEditForm(
+            initial={
+                'username': usuario.username,
+                'email': usuario.email,
+                'password' : usuario.password,
+                #'last_name': usuario.last_name
+            }),
+        'nombre_form': 'editar',
+    }
+    return render(request, 'AppUser/editarperfil.html', contexto)
+    # usuario = request.user
+    # contexto = {
+    #         'form': UserRegisterForm(
+    #         initial ={
+    #         'username': usuario.username,
+    #         'email': usuario.email,
+    #         'last_name': usuario.last_name
+    #         }),
+    #     'nombre_form': 'editar'
+    # }   
+
+    
 
 
 
@@ -110,3 +139,6 @@ def upload_avatar(request):
         'nombre_form': 'Crear'
     }
     return render(request, 'AppUser/login.html', contexto)
+
+
+
