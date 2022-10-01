@@ -1,6 +1,7 @@
 
 from django.urls import path
 from AppLavatres.views import *
+from django.contrib import admin
 
 
 urlpatterns = [
@@ -13,5 +14,5 @@ urlpatterns = [
     path('busqueda_indumentaria_post/', busqueda_indumentaria_post, name='AppLavatresBusquedaIndumentariaPost'),
     path('busqueda_indumentaria/', busqueda_indumentaria, name='AppLavatresBusquedaIndumentaria'),
     path('busqueda_animal_post/', busqueda_animal_post, name='AppLavatresBusquedaAnimalPost'),
-    path('busqueda_animal/', busqueda_animal, name='AppLavatresBusquedaAnimal')
+    path('busqueda_animal/', busqueda_animal, name='AppLavatresBusquedaAnimal'),
     ]
